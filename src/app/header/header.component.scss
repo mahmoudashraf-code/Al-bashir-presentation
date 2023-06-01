@@ -1,0 +1,32 @@
+header {
+    box-shadow: 0 0 3px black;
+    z-index: 100000;
+    background-color: white;
+    nav {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        h2 {
+            padding: 2px;
+            font-size: 21px;
+        }
+        ul {
+            li {
+                i {
+                    font-size: 15px;
+                }
+                display: inline-block;
+                padding: 5px 8px;
+                fill: white;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+    section ul li {
+        display: inline-block;
+        padding: 0 9px;
+    }
+    & > div {
+        height: 3px;
+    }
+}

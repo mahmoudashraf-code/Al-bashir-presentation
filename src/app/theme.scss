@@ -1,0 +1,53 @@
+&.blue {
+    ul.buttonGroup li:hover {
+        background-color: var(--blue-100);
+    }
+    .card:active {
+        outline: 3px solid var(--blue-700);
+    }
+}
+&.green {
+    ul.buttonGroup li:hover {
+        background-color: var(--green-100);
+    }
+}
+&.yellow {
+    ul.buttonGroup li:hover {
+        background-color: var(--yellow-100);
+    }
+}
+&.cyan {
+    ul.buttonGroup li:hover {
+        background-color: var(--cyan-100);
+    }
+}
+&.pink {
+    ul.buttonGroup li:hover {
+        background-color: var(--pink-100);
+    }
+}
+&.indigo {
+    ul.buttonGroup li:hover {
+        background-color: var(--indigo-100);
+    }
+}
+&.teal {
+    ul.buttonGroup li:hover {
+        background-color: var(--teal-100);
+    }
+}
+&.orange {
+    ul.buttonGroup li:hover {
+        background-color: var(--orange-100);
+    }
+}
+&.bluegray {
+    ul.buttonGroup li:hover {
+        background-color: var(--bluegray-100);
+    }
+}
+&.purple {
+    ul.buttonGroup li:hover {
+        background-color: var(--purple-100);
+    }
+}

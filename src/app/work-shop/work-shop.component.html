@@ -1,0 +1,13 @@
+<div id="workShop">
+    <nav>
+        <div class="card" *ngFor="let slide of app.project.slides;index as i"
+            [style.outline]="app.project.select==i?'3px solid '+ app.getTheme(800):''" (click)="app.project.select=i">
+            <div>
+                <app-editor [data]="slide" [dev]="false"></app-editor>
+            </div>
+        </div>
+    </nav>
+    <div id="main" *ngIf="app.project.select>-1">
+        <app-editor [dev]="true" [data]="app.project.slides[app.project.select]"></app-editor>
+    </div>
+</div>

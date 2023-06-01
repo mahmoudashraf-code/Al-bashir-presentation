@@ -1,0 +1,13 @@
+#app {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    overflow: hidden;
+    div {
+        overflow: hidden;
+        height: 100%;
+    }
+}
+::ng-deep {
+    @import "./theme.scss";
+}

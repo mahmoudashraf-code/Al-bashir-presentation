@@ -1,0 +1,87 @@
+<div class="slide">
+    <ng-template #recursiveList let-post>
+        <ng-container *ngFor="let x of post">
+            <div [ngSwitch]="x?.type" style="margin: 10px 0;" [ngStyle]="{fontFamily:x.font}">
+                <ng-template ngSwitchCase="list">
+                    <ul [ngStyle]="{'list-style':x.value.style}" class="listPost">
+                        <li *ngFor="let j of x.value.items">{{j}}</li>
+                    </ul>
+                </ng-template>
+                <ng-template ngSwitchCase="message">
+                    <p-messages [severity]="x.value.severity">
+                        <ng-template pTemplate>
+                            <div class="p-ml-2">{{x.value.content}}</div>
+                            <ng-container *ngIf="x.children?.length > 0">
+                                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: x.children }">
+                                </ng-container>
+                            </ng-container>
+                        </ng-template>
+                    </p-messages>
+                </ng-template>
+                <ng-template ngSwitchCase="card">
+                    <p-card [header]="x.value.header" [subheader]="x.value.subheader">
+                        <ng-template pTemplate="header" *ngIf="x.value.src">
+                            <img [src]="x.value.src">
+                        </ng-template>
+                        {{x.value.content}}
+                        <ng-container *ngIf="x.children?.length > 0">
+                            <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: x.children }">
+                            </ng-container>
+                        </ng-container>
+                    </p-card>
+                </ng-template>
+                <ng-template ngSwitchCase="star">
+                    <div class="divider">
+                        <i class="pi pi-star"></i>
+                        <i class="pi pi-star"></i>
+                        <i class="pi pi-star"></i>
+                    </div>
+                </ng-template>
+                <ng-template ngSwitchCase="img">
+                    <p-card [header]="x.value.header">
+                        <img [src]="x.value.src" [alt]="x.value.src">
+                    </p-card>
+                </ng-template>
+                <ng-template ngSwitchCase="video">
+                    <p-card [header]="x.value.header">
+                        <video [src]="x.value.src"></video>
+                    </p-card>
+                </ng-template>
+                <ng-template ngSwitchCase="frame">
+                    <p-card [header]="x.value.header">
+                        <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(x.value.src)" frameborder="0"></iframe>
+                    </p-card>
+                </ng-template>
+                <ng-template ngSwitchCase="accordion">
+                    <p-accordion>
+                        <p-accordionTab *ngFor="let item of x.value;index as i" [header]="item.header">
+                            <ng-container *ngIf="item.children?.length > 0">
+                                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }">
+                                </ng-container>
+                            </ng-container>
+                        </p-accordionTab>
+                    </p-accordion>
+                </ng-template>
+                <ng-template ngSwitchCase="timeLine">
+                    <p-timeline [value]="x.value" align="alternate" styleClass="customized-timeline">
+                        <ng-template pTemplate="marker" let-event>
+                            <span class="custom-marker p-shadow-2" [style.backgroundColor]="event.color">
+                                <i [ngClass]="event.icon"></i>
+                            </span>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-event>
+                            <p-card [header]="event.status" [subheader]="event.date">
+                                <ng-container *ngIf="event.children?.length > 0">
+                                    <ng-container
+                                        *ngTemplateOutlet="recursiveList; context:{ $implicit: event.children }">
+                                    </ng-container>
+                                </ng-container>
+                            </p-card>
+                        </ng-template>
+                    </p-timeline>
+                </ng-template>
+            </div>
+        </ng-container>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: slide.slide}"></ng-container>
+</div>

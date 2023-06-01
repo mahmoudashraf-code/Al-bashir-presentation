@@ -1,0 +1,27 @@
+#workShop {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    overflow: hidden;
+    nav {
+        width: 200px;
+        box-shadow: 0 0 2px black;
+        overflow: auto;
+        .card {
+            box-shadow: 0 0 1px black;
+            margin: 5px;
+            height: 130px;
+            background-color: white;
+            div {
+                transform: scale(0.2);
+                transform-origin: 0 0 0;
+            }
+        }
+    }
+    & > div {
+        background-color: white;
+        margin: 20px;
+        padding: 15px;
+        box-shadow: 0 0 1px;
+    }
+}
